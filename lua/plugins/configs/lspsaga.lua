@@ -1,6 +1,6 @@
 return function()
-    require("lspsaga").setup({
-        preview = {
+	require("lspsaga").setup({
+		preview = {
 			lines_above = 1,
 			lines_below = 17,
 		},
@@ -34,14 +34,14 @@ return function()
 				exec = "<CR>",
 			},
 		},
-        lightbulb = {
+		lightbulb = {
 			enable = false,
 			sign = true,
 			enable_in_insert = true,
 			sign_priority = 20,
 			virtual_text = false,
 		},
-        diagnostic = {
+		diagnostic = {
 			text_hl_follow = true,
 			on_insert = true,
 			on_insert_follow = false,
@@ -65,11 +65,11 @@ return function()
 			exec = "<CR>",
 			in_select = true,
 		},
-        hover = {
-            open_link = "gl",
-            open_browser = "silent !librewolf"
-        },
-        outline = {
+		hover = {
+			open_link = "gl",
+			open_browser = "silent !librewolf",
+		},
+		outline = {
 			win_position = "right",
 			win_with = "_sagaoutline",
 			win_width = 30,
@@ -82,7 +82,7 @@ return function()
 				quit = "q",
 			},
 		},
-        symbol_in_winbar = {
+		symbol_in_winbar = {
 			enable = false,
 			hide_keyword = true,
 			show_file = false,
@@ -92,9 +92,10 @@ return function()
 			enable = true,
 			frequency = 12,
 		},
-        ui = {
-            border = "single",
-            winblend = 0
-        }
-    })
+		ui = {
+			border = "single",
+			winblend = 0,
+			kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
+		},
+	})
 end

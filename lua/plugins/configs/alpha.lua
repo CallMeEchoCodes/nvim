@@ -1,8 +1,8 @@
 return function()
-    local alpha = require("alpha")
+	local alpha = require("alpha")
 	local dashboard = require("alpha.themes.dashboard")
 
-    dashboard.section.header.val = {
+	dashboard.section.header.val = {
 		[[                        ._           ]],
 		[[  /\__   ____  ______  _|_\  _____   ]],
 		[[ /    \_/ __ \/ _ \  \/ /  |/     \  ]],
@@ -12,22 +12,22 @@ return function()
 	}
 	dashboard.section.header.opts.hl = "Type"
 
-    local function button(sc, txt, leader_txt, keybind, keybind_opts)
-        local sc_after = sc:gsub("%s", ""):gsub(leader_txt, "<leader>")
+	local function button(sc, txt, leader_txt, keybind, keybind_opts)
+		local sc_after = sc:gsub("%s", ""):gsub(leader_txt, "<leader>")
 
-        local opts = {
-            position = "center",
-            shortcut = sc,
-            cursor = 5,
-            width = 50,
-            align_shortcut = "right",
-            hl_shortcut = "Keyword",
-        }
+		local opts = {
+			position = "center",
+			shortcut = sc,
+			cursor = 5,
+			width = 50,
+			align_shortcut = "right",
+			hl_shortcut = "Keyword",
+		}
 
 		if nil == keybind then
 			keybind = sc_after
 		end
-        keybind_opts = vim.F.if_nil(keybind_opts, { noremap = true, silent = true, nowait = true })
+		keybind_opts = vim.F.if_nil(keybind_opts, { noremap = true, silent = true, nowait = true })
 		opts.keymap = { "n", sc_after, keybind, keybind_opts }
 
 		local function on_press()
@@ -42,57 +42,56 @@ return function()
 			on_press = on_press,
 			opts = opts,
 		}
-    end
+	end
 
-    local leader = " "
-    dashboard.section.buttons.val = {
-        button("space f h", " File history", leader, nil, {
-            noremap = true,
+	local leader = " "
+	dashboard.section.buttons.val = {
+		button("space f h", " File history", leader, nil, {
+			noremap = true,
 			silent = true,
 			nowait = true,
 			callback = function()
 				require("telescope.builtin").oldfiles()
 			end,
-        }),
-        button("C-T", " File new", leader, nil, {
+		}),
+		button("C-T", " File new", leader, nil, {
 			noremap = true,
 			silent = true,
 			nowait = true,
 			callback = function()
 				vim.api.nvim_command("enew")
 			end,
-        }),
-        button("space f r", " Find project", leader, nil, {
+		}),
+		button("space f r", " Find project", leader, nil, {
 			noremap = true,
 			silent = true,
 			nowait = true,
 			callback = function()
 				require("telescope").extensions.projects.projects({})
 			end,
-        })
-    }
-    dashboard.section.buttons.opts.hl = "String"
-    
-    function footer()
-        local stats = require("lazy").stats()
+		}),
+	}
+	dashboard.section.buttons.opts.hl = "String"
+
+	function footer()
+		local stats = require("lazy").stats()
 		local ms = (math.floor(stats.startuptime * 10 + 0.5) / 10)
-        return "Neovim"
-        .. "   v"
-        .. vim.version().major
-        .. "."
-        .. vim.version().minor
-        .. "."
-        .. vim.version().patch
-        .. "   "
-        .. stats.count
-        .. " plugins in "
-        .. ms
-        .. "ms"
-    end
+		return "Neovim"
+			.. "   v"
+			.. vim.version().major
+			.. "."
+			.. vim.version().minor
+			.. "."
+			.. vim.version().patch
+			.. "   "
+			.. stats.count
+			.. " plugins in "
+			.. ms
+			.. "ms"
+	end
 
-    dashboard.section.footer.val = footer()
-    dashboard.section.footer.opts.hl = "Function"
-
+	dashboard.section.footer.val = footer()
+	dashboard.section.footer.opts.hl = "Function"
 
 	local head_butt_padding = 2
 	local occu_height = #dashboard.section.header.val + 2 * #dashboard.section.buttons.val + head_butt_padding
@@ -108,9 +107,9 @@ return function()
 		dashboard.section.footer,
 	}
 
-    alpha.setup(dashboard.opts)
+	alpha.setup(dashboard.opts)
 
-    vim.api.nvim_create_autocmd("User", {
+	vim.api.nvim_create_autocmd("User", {
 		pattern = "LazyVimStarted",
 		callback = function()
 			dashboard.section.footer.val = footer()

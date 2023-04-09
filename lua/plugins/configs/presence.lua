@@ -5,7 +5,7 @@ return function()
 		show_time = false,
 		neovim_image_text = "Neovim",
 		blacklist = {
-			"NvimTree"
+			"NvimTree",
 		},
 	})
 end

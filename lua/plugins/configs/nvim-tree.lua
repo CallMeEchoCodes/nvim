@@ -26,7 +26,7 @@ return function()
 				"package-lock.json",
 				"pnpm-lock.yaml",
 				"pnpm-lock.yml",
-				"Cargo.toml"
+				"Cargo.toml",
 			},
 			symlink_destination = true,
 			indent_markers = {

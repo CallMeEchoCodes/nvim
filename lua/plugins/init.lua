@@ -7,7 +7,7 @@ if not vim.loop.fs_stat(lazy_path) then
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
 		"--branch=stable",
-		lazy_path
+		lazy_path,
 	})
 end
 
@@ -33,7 +33,6 @@ local lazy_plugins = {
 		lazy = true,
 		event = "BufWinEnter",
 		config = require("plugins.configs.alpha"),
-		enabled = false,
 	},
 	{
 		"catppuccin/nvim",
@@ -59,7 +58,6 @@ local lazy_plugins = {
 	{
 		"andweeb/presence.nvim",
 		config = require("plugins.configs.presence"),
-		enabled = false,
 	},
 	{
 		"akinsho/bufferline.nvim",
@@ -158,7 +156,7 @@ local lazy_plugins = {
 			{ "onsails/lspkind.nvim" },
 			{ "saadparwaiz1/cmp_luasnip" },
 			{ "kdheepak/cmp-latex-symbols" },
-		}
+		},
 	},
 	{
 		"neovim/nvim-lspconfig",
@@ -172,10 +170,14 @@ local lazy_plugins = {
 			{ "williamboman/mason-lspconfig.nvim" },
 			{
 				"glepnir/lspsaga.nvim",
-				config = require("plugins.configs.lspsaga")
-			}
-		}
-	}
+				config = require("plugins.configs.lspsaga"),
+			},
+		},
+	},
+	{
+		"NvChad/nvim-colorizer.lua",
+		config = require("plugins.configs.colorizer"),
+	},
 }
 
 require("lazy").setup(lazy_plugins, lazy_settings)
