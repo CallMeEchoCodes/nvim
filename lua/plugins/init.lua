@@ -33,6 +33,7 @@ local lazy_plugins = {
 		lazy = true,
 		event = "BufWinEnter",
 		config = require("plugins.configs.alpha"),
+		enabled = false,
 	},
 	{
 		"catppuccin/nvim",
@@ -135,7 +136,45 @@ local lazy_plugins = {
 		"nvim-lualine/lualine.nvim",
 		lazy = true,
 		event = { "BufReadPost", "BufAdd", "BufNewFile" },
-		config = require("plugins.configs.lualine")
+		config = require("plugins.configs.lualine"),
+	},
+	{
+		"hrsh7th/nvim-cmp",
+		lazy = true,
+		event = "InsertEnter",
+		config = require("plugins.configs.cmp"),
+		dependencies = {
+			{ "ray-x/cmp-treesitter" },
+			{ "hrsh7th/cmp-path" },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-nvim-lua" },
+			{ "lukas-reineke/cmp-under-comparator" },
+			{ "f3fora/cmp-spell" },
+			{
+				"L3MON4D3/LuaSnip",
+				dependencies = { "rafamadriz/friendly-snippets" },
+				config = require("plugins.configs.luasnip"),
+			},
+			{ "onsails/lspkind.nvim" },
+			{ "saadparwaiz1/cmp_luasnip" },
+			{ "kdheepak/cmp-latex-symbols" },
+		}
+	},
+	{
+		"neovim/nvim-lspconfig",
+		lazy = true,
+		event = { "BufReadPost", "BufAdd", "BufNewFile" },
+		config = require("plugins.configs.lsp"),
+		dependencies = {
+			{ "ray-x/lsp_signature.nvim" },
+			{ "mfussenegger/nvim-jdtls" },
+			{ "williamboman/mason.nvim" },
+			{ "williamboman/mason-lspconfig.nvim" },
+			{
+				"glepnir/lspsaga.nvim",
+				config = require("plugins.configs.lspsaga")
+			}
+		}
 	}
 }
 

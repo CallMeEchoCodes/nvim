@@ -38,6 +38,10 @@ o.termguicolors = true
 -- Wrap moving cursor horizontal to next/previous lines
 -- vim.opt.whichwrap:append("<>[]hl")
 
+-- Use system notification daemon
+g.notify_use_osc_24 = true
+g.notify_send_via = "auto"
+
 -- Neovide
 vim.api.nvim_set_option_value("guifont", "Fira Code,Symbols Nerd Font,Twemoji:h12", {})
 g.neovide_refresh_rate = 60
@@ -46,3 +50,11 @@ g.neovide_cursor_trail_length = 0.05
 g.neovide_cursor_antialiasing = true
 g.neovide_transparency = 0.2
 g.neovide_cursor_vfx_mode = "railgun"
+
+-- Automatically open nvim-tree on startup
+vim.cmd([[
+    augroup NvimTreeAutoOpen
+        autocmd!
+        autocmd VimEnter * NvimTreeToggle
+    augroup END
+]])

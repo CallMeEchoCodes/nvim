@@ -89,6 +89,10 @@ return function()
 		},
 		log = {
 			enable = false,
-		}
+		},
+		hijack_directories = {
+			enable = true,
+			auto_open = true,
+		},
 	})
 end

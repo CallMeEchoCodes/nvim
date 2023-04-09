@@ -39,7 +39,7 @@ cmd('PromptGoLine', function()
 end)
 
 -- Other keybinds
-map('n', '<C-I>', ':NvimTreeToggle<CR>', 'Toggle tree view')
+map('n', '<C-O>', ':NvimTreeToggle<CR>', 'Toggle tree view')
 map('n', '<C-D>', ':ToggleTerm direction=horizontal<CR>', 'Toggle terminal')
 map('n', '<C-G>', ':PromptGoLine<CR>', 'Go to line')
 map('n', '<leader>fr', ':FindProjects<CR>', 'Find projects')
