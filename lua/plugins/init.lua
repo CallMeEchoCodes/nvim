@@ -29,6 +29,12 @@ local lazy_settings = {
 -- Lazy plugins
 local lazy_plugins = {
 	{
+		"goolord/alpha-nvim",
+		lazy = true,
+		event = "BufWinEnter",
+		config = require("plugins.configs.alpha"),
+	},
+	{
 		"catppuccin/nvim",
 		name = "catppuccin",
 		config = require("plugins.configs.catppuccin"),
@@ -52,14 +58,17 @@ local lazy_plugins = {
 	{
 		"andweeb/presence.nvim",
 		config = require("plugins.configs.presence"),
+		enabled = false,
 	},
 	{
 		"akinsho/bufferline.nvim",
 		version = "v3.*",
-		dependencies = "nvim-tree/nvim-web-devicons",
+		dependencies = {
+			{ "nvim-tree/nvim-web-devicons" },
+		},
 		lazy = true,
 		event = { "BufReadPost", "BufAdd", "BufNewFile" },
-		config = require("plugins.configs.bufferline")
+		config = require("plugins.configs.bufferline"),
 	},
 	{
 		"nvim-tree/nvim-tree.lua",
@@ -71,8 +80,63 @@ local lazy_plugins = {
 			"NvimTreeFindFileToggle",
 			"NvimTreeRefresh",
 		},
-		config = require("plugins.configs.nvim-tree")
+		dependencies = {
+			{ "nvim-tree/nvim-web-devicons" },
+		},
+		config = require("plugins.configs.nvim-tree"),
 	},
+	{
+		"ibhagwan/smartyank.nvim",
+		lazy = true,
+		event = "BufReadPost",
+		config = require("plugins.configs.smartyank"),
+	},
+	{
+		"tpope/vim-fugitive",
+		lazy = true,
+		cmd = { "Git", "G" },
+	},
+	{
+		"akinsho/toggleterm.nvim",
+		lazy = true,
+		cmd = {
+			"ToggleTerm",
+			"ToggleTermSetName",
+			"ToggleTermToggleAll",
+			"ToggleTermSendVisualLines",
+			"ToggleTermSendCurrentLine",
+			"ToggleTermSendVisualSelection",
+		},
+		config = require("plugins.configs.toggleterm"),
+	},
+	{
+		"nvim-telescope/telescope.nvim",
+		lazy = true,
+		cmd = "Telescope",
+		config = require("plugins.configs.telescope"),
+		dependencies = {
+			{ "nvim-tree/nvim-web-devicons" },
+			{
+				"ahmedkhalf/project.nvim",
+				event = "BufReadPost",
+				config = require("plugins.configs.project"),
+			},
+			{ "jvgrootveld/telescope-zoxide" },
+			{ "nvim-lua/plenary.nvim" },
+		},
+	},
+	{
+		"rcarriga/nvim-notify",
+		lazy = true,
+		event = "VeryLazy",
+		config = require("plugins.configs.notify"),
+	},
+	{
+		"nvim-lualine/lualine.nvim",
+		lazy = true,
+		event = { "BufReadPost", "BufAdd", "BufNewFile" },
+		config = require("plugins.configs.lualine")
+	}
 }
 
 require("lazy").setup(lazy_plugins, lazy_settings)
